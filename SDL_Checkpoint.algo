@@ -1,0 +1,161 @@
+                                //RESOLUTION OF THE FIRST PROBLEM
+ALGORITHM SDL_1stProblem
+VAR
+    // variables for solution 1
+    i: INTEGER := 0;
+    j: INTEGER := 0;
+    sum: INTEGER := 0;
+    tab1 : ARRAY_OF INTEGER[];
+    tab2 : ARRAY_OF INTEGER[];
+    // variables for solution 2
+    htab: HASH_TABLE<STRING,INTEGER>;
+    count: INTEGER := 1;
+    
+
+BEGIN
+    // initialization of array tab1
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        Read(tab1[i]);  
+    END_FOR
+    // initialization of array tab2
+    FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+        Read(tab1[j]);  
+    END_FOR
+
+    //calcul the sum all distinct elements from the two set
+   //solution 1
+    // take numbers (that different with others numbers of tab2) in array tab1
+    FOR i FROM 0 TO  tab1.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+            IF (tab1[i] <> tab2[j]) THEN
+                TRUE; // the number is not in the array tab2
+                CONTINUE;
+            ELSE 
+                BREAK;
+            END_IF
+        END_FOR
+        sum := sum + tab1[i];
+    END_FOR
+    // take numbers (that different with others numbers of tab1) in array tab2
+    FOR i FROM 0 TO  tab2.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab1.length-1 STEP 1  DO
+            IF (tab2[i] <> tab1[j]) THEN
+                TRUE; // the number is not in the array tab2
+                CONTINUE;
+            ELSE 
+                BREAK;
+            END_IF
+        END_FOR
+        sum := sum + tab2[i];
+    END_FOR
+    write(sum); // print the sum of all distinct elements from the two arrays
+    
+   //solution 2
+    sum :=0;
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+            IF (tab1[i] <> tab2[j]) THEN
+                TRUE;
+                CONTINUE;
+            ELSE 
+                BREAK;
+            END_IF
+        END_FOR
+        htab.insert("elt"[i],tab1[i]);
+    END_FOR
+
+    FOR i FROM 0 TO tab2.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab1.length-1 STEP 1  DO
+            IF (tab2[i] <> tab1[j]) THEN
+                TRUE;
+                CONTINUE;
+            ELSE 
+                BREAK;
+            END_IF
+        END_FOR
+        htab.insert("elt"[i],tab2[i]);
+    END_FOR
+
+    FOR i FROM 0 TO htab.length STEP 1  DO
+        count := htab.get("elt"[i]);
+        WHILE (i <= htab.length-1) DO
+            sum = sum + htab("elt"[i],count+1);
+        END_WHILE
+        
+    END_FOR
+
+END
+
+                                //RESOLUTION OF THE SECOND PROBLEM
+ALGORITHM SDL_2ndProblem
+VAR
+    // variables for solution 1
+    i: INTEGER := 0;
+    j: INTEGER := 0;
+    sum: INTEGER := 0;
+    tab1 : ARRAY_OF INTEGER[];
+    tab2 : ARRAY_OF INTEGER[];
+    // variables for solution 2
+    htab: HASH_TABLE<INTEGER,INTEGER>;
+    count: INTEGER :=0;
+BEGIN
+     // initialization of array tab1
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        Read(tab1[i]);  
+    END_FOR
+    // initialization of array tab2
+    FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+        Read(tab1[j]);  
+    END_FOR
+
+    //calcul the sum of overlapping elements in two set
+    //solution 1
+    // take numbers in array tab1
+    FOR i FROM 0 TO  tab1.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+            IF (tab1[i] <> tab2[j]) THEN
+            TRUE;
+                CONTINUE;
+            ELSE 
+                BREAK;
+            END_IF
+        END_FOR
+        sum := sum + tab1[i];
+    END_FOR
+    // take numbers in array tab1
+    FOR i FROM 0 TO  tab1.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+            IF (tab1[i]  tab2[j]) THEN
+            TRUE;
+                CONTINUE;
+            ELSE 
+                BREAK;
+            END_IF
+        END_FOR
+        sum := sum + tab1[i];
+    END_FOR
+    write(sum);
+
+    //solution 2
+    sum :=0;
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab2.length-1 STEP 1  DO
+            IF (tab1[i] <> tab2[j] ) THEN
+            TRUE;
+                CONTINUE;
+            ELSE 
+                BREAK;
+            END_IF
+        END_FOR
+        htab.insert("elt"[i],tab1[i]);
+    END_FOR
+
+    FOR i FROM 0 TO htab.length STEP 1  DO
+        WHILE (count <= htab.length) DO
+            sum = sum + htab.get("elt"[i],)
+        END_WHILE
+        
+    END_FOR
+
+
+END
